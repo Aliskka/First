@@ -15,4 +15,10 @@
 command1 = 'switchport trunk allowed vlan 1,3,10,20,30,100'
 command2 = 'switchport trunk allowed vlan 1,3,100,200,300'
 
-print(command1.split()[-1].split(',')+command2.split()[-1].split(','))
+list1 = (command1.split()[-1].split(',')+command2.split()[-1].split(','))
+print(list1)
+
+list1.sort()
+set(list1)
+
+print(type(list1))
