@@ -9,3 +9,7 @@
 '''
 
 MAC = 'AAAA:BBBB:CCCC'
+
+MAC = MAC.split(':')
+print(MAC)
+print(str(int(MAC[0], 16))+str(int(MAC[1], 16))+str(int(MAC[2], 16)))
