@@ -44,3 +44,8 @@ london_co = {
         'routing': True
     }
 }
+
+device = input('Enter device name:')  #  запрос и ввод названия утсройства
+variants = str(list(london_co[device].keys())).replace("'", "").strip('[]')  # формирование ключей и форматирование их в строку без лишних символов
+parameter = input('Enter parameter name ('+variants+'): ')  #  запрос и ввод параметра
+print(london_co[device][parameter])  #  вывод содержимого
