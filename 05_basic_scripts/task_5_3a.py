@@ -21,3 +21,17 @@ trunk_template = [
     'switchport trunk encapsulation dot1q', 'switchport mode trunk',
     'switchport trunk allowed vlan {}'
 ]
+vlan = 'VLAN number: '  # template question for access
+vlans = 'allowed VLANs: '  # template question for trunk
+
+mode_template = { 'access':access_template, 'trunk':trunk_template}  # making mode dictionary depending of interface mode
+vlan_template = { 'access':vlan, 'trunk':vlans}  # making vlan(s) dictionary depending of interface mode
+
+if_mode = input('Enter interface mode (access/trunk): ')  # entering interface mode
+if_number = input('Enter interface type and number: ')  # entering interface type and number
+
+if_vlan = input('Enter {}'.format(vlan_template[if_mode]))  # entering vlan(s)
+
+print('\n' + '-' * 30)  #just separating line
+print('interface {}'.format(if_number))  # printing interface
+print('\n'.join(mode_template[if_mode]).format(if_vlan))  # printing settings of interface
