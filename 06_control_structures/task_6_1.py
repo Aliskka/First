@@ -19,3 +19,14 @@ D: 224-239
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 '''
+IP = input('Enter IP-address in format 10.0.1.1: ').split('.')
+if int(IP[0]) == 255 and int(IP[1]) == 255 and int(IP[2]) == 255 and int(IP[3]) == 255:
+    print('local broadcast')
+elif int(IP[0]) == 0 and int(IP[1]) == 0 and int(IP[2]) == 0 and int(IP[3]) == 0:
+    print('unassigned')
+elif int(IP[0]) < 224:
+    print('unicast')
+elif 223 < int(IP[0]) < 240:
+    print('multicast')
+else:
+    print('unused')
