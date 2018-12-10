@@ -12,3 +12,10 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 '''
+from sys import argv
+name = str(argv[1:]).strip('[]').strip("'")
+print(name)
+with open(name, 'r') as f:
+    for line in f:
+        if not line.startswith('!'):
+            print(line.rstrip())
