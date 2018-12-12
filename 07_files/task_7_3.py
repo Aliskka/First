@@ -18,3 +18,9 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 '''
+
+match = 'DYNAMIC'
+with open('CAM_table.txt', 'r') as src:    # open file
+    for line in src:
+        if match in line:                  # check for matching "DYNAMIC"
+            print(line.replace(match+'     ', "").rstrip())   #  print line and remove "DYNAMIC" and spaces
