@@ -17,3 +17,12 @@
 '''
 
 ignore = ['duplex', 'alias', 'Current configuration']
+from sys import argv
+request, result  = argv[1:]
+with open(request, 'r') as src, open(result, 'w') as dest:
+    for line in src:
+        for word in ignore:
+            if word in line:
+                break
+        else:
+            dest.write('\n'+(line.rstrip()))

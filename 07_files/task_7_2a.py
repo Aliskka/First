@@ -13,3 +13,14 @@
 '''
 
 ignore = ['duplex', 'alias', 'Current configuration']
+from sys import argv
+name = str(argv[1:]).strip('[]').strip("'")  # entering file name as argument
+with open(name, 'r') as f:  #  open file
+    for line in f:
+        for word in ignore:            #  check for words should be exapted
+            if word in line:
+                break
+        else:
+            if not line.startswith('!'):   # remove '!' in lines
+                print(line.rstrip())
+
