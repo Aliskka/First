@@ -18,7 +18,8 @@ with open('CAM_table.txt', 'r') as src:    # open file
     for line in src:
         if match in line:                 # check for matching "DYNAMIC"
             vlans.append(line.replace(match+'     ', "").rstrip())  # add element from strings to the list one by one
+
 vlans.sort()    # sorting list by vlan
 for i in vlans:  # print list
-    if vlan in i:
+    if i.split()[0] == vlan:
         print(i)
