@@ -36,3 +36,28 @@ def ignore_command(command, ignore):
     * False - если нет
     '''
     return any(word in command for word in ignore)
+
+def get_commands(config):
+    with open(config) as file:
+        commands = {}
+        for line in file:
+            if ignore_command(line, ignore):
+                pass
+            elif line.startswith('!'):
+                pass
+            elif line.startswith('\n'):
+                pass
+            elif not line.startswith(" "):
+                parent = (line.strip('\n'))
+                commands.update({parent:[]})
+            else:
+                child = line.strip('\n')
+                commands[parent].append(child)
+
+
+    return commands
+
+
+commands = get_commands('config_sw1.txt')
+
+print(commands)

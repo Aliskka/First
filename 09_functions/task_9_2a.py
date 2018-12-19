@@ -31,6 +31,14 @@ def generate_trunk_config(trunk):
         'switchport trunk encapsulation dot1q', 'switchport mode trunk',
         'switchport trunk native vlan 999', 'switchport trunk allowed vlan'
     ]
+    result = {i: [] for i in trunk_dict}
+    for i in trunk_dict:
+        for command in trunk_template:
+            if command.endswith('allowed vlan'):
+                result[i].append(command + ' ' + str(trunk[i]).strip('[]'))
+            else:
+                result[i].append(command)
+    return result
 
 
 trunk_dict = {
@@ -38,3 +46,4 @@ trunk_dict = {
     'FastEthernet0/2': [11, 30],
     'FastEthernet0/4': [17]
 }
+print(generate_trunk_config(trunk_dict))
