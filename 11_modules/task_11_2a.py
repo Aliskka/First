@@ -32,3 +32,13 @@
 > pip install graphviz
 
 '''
+
+from task_11_1 import parse_cdp_neighbors
+from draw_network_graph import draw_topology
+full_topology = {**parse_cdp_neighbors('sh_cdp_n_sw1.txt'), **parse_cdp_neighbors('sh_cdp_n_r1.txt'), **parse_cdp_neighbors('sh_cdp_n_r2.txt'), **parse_cdp_neighbors('sh_cdp_n_r3.txt') }
+print(full_topology)
+for key in list(full_topology):  # delete matches any_key=any_value
+    for item in list(full_topology):
+        if key == full_topology[item]:
+            del(full_topology[key])
+draw_topology(full_topology)

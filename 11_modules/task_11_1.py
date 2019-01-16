@@ -27,3 +27,21 @@ R6           Fa 0/2          143           R S I           2811       Fa 0/0
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 '''
+def parse_cdp_neighbors(output_file):
+    source = ()
+    dest = ()
+    result = {}
+    with open(output_file) as file:  # defining device from which the command is made
+        for line in file:
+            if 'cdp' in line:
+                device = line.replace('>show cdp neighbors', '').strip()
+    with open(output_file) as file:  # adding cdp neighbors to dictionary line by line
+        for line in file:
+            if ('Eth' or 'Fa') in line:
+                source = (device, line.split()[1]+line.split()[2])
+                dest = (line.split()[0], line.split()[-2]+line.split()[-1])
+                result[source] = dest
+    return(result)
+
+if __name__ == "__main__":
+    print(parse_cdp_neighbors('sw1_sh_cdp_neighbors.txt'))
